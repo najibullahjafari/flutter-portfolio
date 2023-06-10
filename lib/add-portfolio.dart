@@ -61,7 +61,8 @@ class _AddPortfolioScreenState extends State<AddPortfolioScreen> {
       appBar: AppBar(
         title: Text('Add Portfolio'),
       ),
-      body: Stack(
+      body:
+      Stack(
         children: [
           // Background image with blur effect
           Container(

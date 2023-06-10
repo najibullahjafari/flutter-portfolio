@@ -42,7 +42,7 @@ class PortfolioListScreen extends StatelessWidget {
                             ),
                           ),
                           subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 portfolio.description,
