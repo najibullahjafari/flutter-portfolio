@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'portfolio_list_screen.dart';
 import 'add-portfolio.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class PortfolioScreen extends StatefulWidget {
   @override
@@ -9,11 +11,10 @@ class PortfolioScreen extends StatefulWidget {
 }
 
 class _PortfolioScreenState extends State<PortfolioScreen> {
-  bool isLoggedIn = false; // Add this line to declare and initialize isLoggedIn
+  bool isLoggedIn = false;
 
   void _authenticate() {
-    // Implement your authentication logic here
-    // Set the isLoggedIn variable to true if the authentication is successful
+
     setState(() {
       isLoggedIn = true;
     });
@@ -42,99 +43,127 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               color: Colors.black.withOpacity(0.5), // Adjust the opacity as needed
             ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 80,
-                  backgroundImage: AssetImage('assets/portfolio-img.png'),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Najibullah Jafari',
-                  style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Software Developer',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-                SizedBox(height: 16),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: ListTile(
-                    leading: Icon(Icons.email),
-                    title: Text('najib2020202020@gmail.com'),
+          SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage('assets/portfolio-img.png'),
                   ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: ListTile(
-                    leading: Icon(Icons.phone),
-                    title: Text('+93793647446'),
+                  SizedBox(height: 16),
+                  Text(
+                    'Najibullah Jafari',
+                    style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: ListTile(
-                    leading: Icon(Icons.link),
-                    title: Text('www.najib.af.com'),
+                  SizedBox(height: 8),
+                  Text(
+                    'Software Developer',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 16),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AddPortfolioScreen()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.green, // Set the background color
-                      onPrimary: Colors.white, // Set the text color
-                      textStyle: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Arial', // Set the desired font
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Text('Add Portfolio'),
-                  ),
-                ),
+                  SizedBox(height: 16),
 
+                  ElevatedButton(
+                    onPressed: _launchGitHubURL,
+                    child: Text('Open GitHub'),
+                  ),
 
-                SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PortfolioListScreen()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white, // Set the background color
-                    onPrimary: Colors.black, // Set the text color
-                    textStyle: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Arial', // Set the desired font
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: ListTile(
+                      title: Text('Here we connect the world! No problem where you are but you will still be connected around the world from East to West! Happy!'),
                     ),
                   ),
-                  child: Text('Developers'),
-                ),
-              ],
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    child: ListTile(
+                      leading: Icon(Icons.email),
+                      title: Text('najib2020202020@gmail.com'),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: ListTile(
+                      leading: Icon(Icons.phone),
+                      title: Text('+93793647446'),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    child: GestureDetector(
+                      onTap: () async {
+                        const url = 'https://www.najib.af.com';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      child: ListTile(
+                        leading: Icon(Icons.link),
+                        title: Text('www.najib.af.com'),
+                      ),
+                    ),
+                  ),
+
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage('assets/ali.png'),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Aliullah Wakili',
+                    style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Software Developer',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                  SizedBox(height: 16),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: ListTile(
+                      title: Text('Here we connect the world! No problem where you are but you will still be connected around the world from East to West! Happy!'),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    child: ListTile(
+                      leading: Icon(Icons.email),
+                      title: Text('ali01@gmail.com'),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: ListTile(
+                      leading: Icon(Icons.phone),
+                      title: Text('+93793647446'),
+                    ),
+                  ),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    child: ListTile(
+                      leading: Icon(Icons.link),
+                      title: Text('www.ali01.com'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
+
     );
+  }
+}
+_launchGitHubURL() async {
+  const url = 'https://github.com/najibullahjafari/flutter-portfolio'; // Replace with your GitHub URL
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
