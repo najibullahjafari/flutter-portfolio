@@ -1,21 +1,21 @@
-import 'dart:ui';
-import 'package:uuid/uuid.dart';
+
 import 'package:flutter/material.dart';
-import 'portfolio.dart';
-import 'portfolio_provider.dart';
-import 'portfolio-screen.dart';
-import 'add-portfolio.dart';
-import 'login.dart';
+import 'package:portfolio/screens/home/home_screen_layout.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: 'Portfolio',
-    theme: ThemeData(
-      primarySwatch: Colors.cyan,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-    ),
-    home: PortfolioApp(),
-  ));
+  runApp(MyApp());
 }
 
-
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Portfolio',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomeScreenLayout(),
+    );
+  }
+}
